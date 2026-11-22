@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#16181f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Editor Video">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Editor Video Mudah</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ================= BERANDA ================= -->
+  <section id="home" class="screen">
+    <div class="home-in">
+      <div class="logo">
+        <div class="mark" id="logoMark"></div>
+        <div><h1>Editor Video Mudah</h1><p>Video penjelasan dengan gambar tempelan</p></div>
+      </div>
+      <button class="bigbtn primary" id="btnNew"><span data-i="plus"></span><span>Buat Video Baru<small>Pilih video dari HP atau komputer</small></span></button>
+      <div id="projList"></div>
+      <button class="bigbtn" id="btnHelpHome"><span data-i="help"></span><span>Cara Memakai<small>Panduan singkat 4 langkah</small></span></button>
+      <div class="install-tip hidden" id="installTip"></div>
+      <button class="bigbtn hidden" id="btnInstall"><span data-i="download"></span><span>Pasang di Layar Utama<small>Supaya mudah dibuka seperti aplikasi</small></span></button>
+      <p class="note" style="text-align:center">Semua video diproses di perangkat Anda sendiri. Tidak ada yang dikirim ke internet.</p>
+    </div>
+  </section>
+
+  <!-- ================= EDITOR ================= -->
+  <section id="editor" class="screen hidden">
+    <header class="topbar">
+      <button class="iconbtn" id="btnHome" aria-label="Kembali ke beranda" data-i="home"></button>
+      <input class="projname" id="projName" aria-label="Nama proyek" value="Video Saya" maxlength="60">
+      <button class="iconbtn" id="btnHelp" aria-label="Bantuan" data-i="help"></button>
+      <button class="iconbtn" id="btnSettings" aria-label="Pengaturan" data-i="gear"></button>
+      <button class="cta" id="btnExport"><span data-i="download" style="display:contents"></span>Simpan Video</button>
+    </header>
+
+    <div id="stage">
+      <div id="stageBox">
+        <canvas id="cv" width="960" height="540"></canvas>
+        <div id="hit"></div>
+        <div id="selBox"><i id="selHandle"></i></div>
+      </div>
+      <div id="emptyHint"><div class="card">
+        <h2>Mari mulai</h2>
+        <p>Tekan tombol di bawah, lalu pilih video rekaman Anda.</p>
+        <button class="btn accent" id="btnEmptyAdd" style="width:100%"><span data-i="plus" style="display:contents"></span>Pilih Video</button>
+      </div></div>
+    </div>
+
+    <div class="transport">
+      <div class="tc"><span id="tcur">0:00</span><small>dari <span id="tdur">0:00</span></small></div>
+      <div class="tctl">
+        <button class="tbtn stepb" id="btnBack1" aria-label="Mundur 1 detik"><span data-i="back"></span>1 dtk</button>
+        <button class="tbtn play" id="btnPlay" aria-label="Putar"></button>
+        <button class="tbtn stepb" id="btnFwd1" aria-label="Maju 1 detik"><span data-i="fwd"></span>1 dtk</button>
+      </div>
+      <button class="tbtn" id="btnUndo" aria-label="Batalkan langkah terakhir" data-i="undo"></button>
+      <button class="tbtn" id="btnRedo" aria-label="Ulangi langkah" data-i="redo"></button>
+    </div>
+
+    <div id="tlWrap">
+      <div id="tl">
+        <div id="tlInner">
+          <div id="ruler"></div>
+          <div class="lane" id="ovLane"></div>
+          <div class="lane" id="vidLane"></div>
+          <button id="addEnd" aria-label="Tambah video di akhir" data-i="plus"></button>
+        </div>
+      </div>
+      <div id="playhead"></div>
+      <div class="zoomctl">
+        <button id="zOut" aria-label="Perkecil garis waktu" data-i="zoomout"></button>
+        <button id="zIn" aria-label="Perbesar garis waktu" data-i="zoomin"></button>
+      </div>
+    </div>
+
+    <nav id="toolbar" aria-label="Alat edit"></nav>
+  </section>
+</div>
+
+<div id="toast" role="status" aria-live="polite"></div>
+<div class="dropmask" id="dropMask">Lepas file di sini</div>
+<input type="file" id="fileVideo" accept="video/*" multiple hidden>
+<input type="file" id="fileImage" accept="image/*" multiple hidden>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
